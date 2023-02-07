@@ -1,5 +1,5 @@
-# DjangoTest
- 
+#README.md
+
 Инструкция:
 1)Win + R
 2)Появилось окошко, вводим cmd
