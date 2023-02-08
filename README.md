@@ -21,8 +21,14 @@ deactivate
 ## Запуск проекта
 ```
 git clone https://github.com/Bananad47/Yandex_lyceum
-pip install -r requirements.txt
+pip install -r dev_req.txt
 cd lyceum
+cd lyceum
+```
+#### Нужно переименовать файл `.env_sample` в `.env`, а вместо `YOUR_SECRET_KEY ` указать свой секретный ключ. После чего мы можем запускать проект.
+
+```
+cd ..
 python manage.py runserver
 ```
 
