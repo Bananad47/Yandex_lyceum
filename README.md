@@ -1,7 +1,31 @@
-Инструкция по запуску проекта в dev-режиме:<br />
-1)Win + R<br />
-2)Появилось окошко, вводим cmd<br />
-3)git clone https://github.com/Bananad47/Yandex_lyceum<br />
-4)pip install requirements.txt<br />
-5)cd lyceum<br />
-6)python manage.py runserver<br />
+# Инструкция по запуску проекта в dev-режиме
+
+
+### Создание виртуального окружения
+```
+python -m venv venv
+```
+### Запуск виртуального окружения
+Для Windows
+```
+.\venv\Scripts\Activate
+```
+Для macOS/Linux
+```
+source venv/bin/Activate
+```
+### Выход из виртуального окружения
+```
+deactivate
+```
+
+## Запуск проекта
+```
+git clone https://github.com/Bananad47/Yandex_lyceum
+pip install -r requirements.txt
+cd lyceum
+python manage.py runserver
+```
+
+
+
