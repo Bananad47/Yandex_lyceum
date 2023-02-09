@@ -32,5 +32,6 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics
     - name: Lint with black
+      run:
         black --verbose pyproject.toml
         black --check .
