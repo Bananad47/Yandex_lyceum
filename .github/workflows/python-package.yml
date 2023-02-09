@@ -34,4 +34,5 @@ jobs:
     - name: Lint with black
       run:
         cd lyceum\
+      run:
         black .\lyceum\ --config pyproject.toml
