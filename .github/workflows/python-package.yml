@@ -25,12 +25,14 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
+      needs: Set up Python ${{ matrix.python-version }}
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements/test_req.txt
         pip install -r requirements/main_req.txt
         pip install -r requirements/dev_req.txt
     - name: Lint with flake8
+      needs: Install dependencies
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics
