@@ -33,7 +33,5 @@ jobs:
         flake8 . --count --show-source --statistics --config flake8.config
     - name: Lint with black
       run:
-        cd lyceum\
-    - name: second
-      run:
         black lyceum\ --config pyproject.toml
+        
