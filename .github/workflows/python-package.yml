@@ -31,3 +31,6 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics --config flake8.config
+    - name: Lint with black
+      run:
+        black .\lyceum\ --config pyproject.toml
