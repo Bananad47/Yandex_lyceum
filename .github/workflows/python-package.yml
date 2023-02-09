@@ -1,6 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
 name: Python package
 
 on:
@@ -11,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -30,13 +27,7 @@ jobs:
         pip install -r requirements/test_req.txt
         pip install -r requirements/main_req.txt
         pip install -r requirements/dev_req.txt
-  test:
-    name: Test
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Lint with flake8
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --show-source --statistics
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --show-source --statistics
