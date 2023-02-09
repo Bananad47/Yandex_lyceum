@@ -1,1 +1,6 @@
 flake8==6.0.0
+flake8-absolute-import==1.0.0.1
+flake8-alphabetize==0.0.19
+flake8-functions-names==0.4.0
+flake8-variables-names==0.0.5
+flake8-quotes==3.3.2

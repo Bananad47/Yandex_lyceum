@@ -1,2 +1,5 @@
-[tool.black]
+[black]
+name = "my-package"
+version = "0.1.0"
+description = "A short description of the package."
 line-length = 79
