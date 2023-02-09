@@ -34,7 +34,7 @@ jobs:
     name: Test
     needs: Build
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - uses: actions/checkout@v3
       - name: Lint with flake8
         run: |
