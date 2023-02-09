@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -34,11 +34,4 @@ jobs:
     - name: Lint with black
       run:
         black lyceum/ --config pyproject.toml
-  test:
-    name: Test
-    uses: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test1
-        run:
-          echo 1
+        
