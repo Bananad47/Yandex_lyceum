@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -27,11 +26,62 @@ jobs:
         pip install -r requirements/test_req.txt
         pip install -r requirements/main_req.txt
         pip install -r requirements/dev_req.txt
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics --config flake8.toml
+
     - name: Lint with black
       run:
         black lyceum/ --config pyproject.toml
+
+
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Lint
+    needs: build
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v3
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: flake8 import Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-absolute-import==1.0.0.1"
+          args: "--config flake8.toml"
+
+      - name: flake8 alphabetize Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-alphabetize==0.0.19"
+          args: "--config flake8.toml"
+
+      - name: flake8 functions names Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-functions-names==0.4.0"
+          args: "--config flake8.toml"
+
+      - name: flake8 variables names Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-variables-names==0.0.5"
+          args: "--config flake8.toml"
+
+      - name: flake8 quotes Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-quotes==3.3.2"
+          args: "--config flake8.toml"
         
+
+
+
+
+
+
