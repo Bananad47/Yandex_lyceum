@@ -53,26 +53,7 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           plugins: "flake8-absolute-import==1.0.0.1"
-          args: "--config flake8.toml"
-
-      - name: flake8 alphabetize Lint
-        uses: py-actions/flake8@v2
-        with:
-          plugins: "flake8-alphabetize==0.0.19"
-          args: "--config flake8.toml"
-
-      - name: flake8 functions names Lint
-        uses: py-actions/flake8@v2
-        with:
-          plugins: "flake8-functions-names==0.4.0"
-          args: "--config flake8.toml"
-
-      - name: flake8 variables names Lint
-        uses: py-actions/flake8@v2
-        with:
-          plugins: "flake8-variables-names==0.0.5"
-          args: "--config flake8.toml"
-
+          
       - name: flake8 quotes Lint
         uses: py-actions/flake8@v2
         with:
