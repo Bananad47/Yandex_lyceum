@@ -1,5 +1,5 @@
 # Инструкция по запуску проекта в dev-режиме
-[![Python](https://img.shields.io/badge/python-v3.9-brightgreen)](https://www.python.org/) [![Django](https://img.shields.io/badge/django-v3.2-brightgreen)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/python-v3.9-success)](https://www.python.org/) [![Django](https://img.shields.io/badge/django-v3.2-success)](https://www.djangoproject.com/)
 [![Python package](https://github.com/Bananad47/Yandex_lyceum/actions/workflows/python-package.yml/badge.svg)](https://github.com/Bananad47/Yandex_lyceum/actions/workflows/python-package.yml)
 ## Создание виртуального окружения
 ```
@@ -41,6 +41,3 @@ python manage.py runserver
 #### `main_req.txt` - список зависимостей для запуска проекта.
 #### `dev_req.txt` - список зависимостей для разработки.
 #### `test_req.txt` - список зависимостей для тестирования.
-
-
-
