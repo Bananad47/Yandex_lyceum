@@ -34,7 +34,7 @@ jobs:
 
     - name: Lint with black
       run:
-        black lyceum/ --check --config pyproject.toml
+        black lyceum/ --check
 
 
   flake8-lint:
