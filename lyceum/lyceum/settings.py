@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import os, random
+import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-print(random.randint(1,100))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,11 +30,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG")
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
 
-A = 5
+
 # Application definition
 
 INSTALLED_APPS = [
-    'about.apps.AboutConfig',
+    "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
     "catalog.apps.CatalogConfig",
     "django.contrib.admin",
