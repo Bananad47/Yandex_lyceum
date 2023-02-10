@@ -34,7 +34,7 @@ jobs:
 
     - name: Lint with black
       run:
-        black lyceum/ --config pyproject.toml
+        black lyceum/ --check --config pyproject.toml
 
 
   flake8-lint:
@@ -53,7 +53,22 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           plugins: "flake8-absolute-import==1.0.0.1"
-          
+
+      - name: flake8 alphabetize Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-alphabetize==0.0.19"
+
+      - name: flake8 functions names Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-functions-names==0.4.0"
+
+      - name: flake8 variables names Lint
+        uses: py-actions/flake8@v2
+        with:
+          plugins: "flake8-variables-names==0.0.5"
+
       - name: flake8 quotes Lint
         uses: py-actions/flake8@v2
         with:
