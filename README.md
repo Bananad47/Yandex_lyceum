@@ -24,15 +24,14 @@ deactivate
 git clone https://github.com/Bananad47/Yandex_lyceum
 pip install -r requirements\main.txt
 cd lyceum
-cd lyceum
 ```
+
 #### Нужно переименовать файл `.env_sample` в `.env`. Вместо `YOUR_SECRET_KEY ` указать свой секретный ключ. Вместо `DEBUG_STATE` указать True или False, в зависимости от того хотите вы или нет включить debug. А `HOST_LIST` заменить на список разрешенных ip адресов, например `['198.211.99.20', 'localhost', '127.0.0.1']` или `["*"]`, если хотите разрешить все ip адресы.
 
 
 #### После чего мы можем запускать проект.
 
 ```
-cd ..
 python manage.py runserver
 ```
 
