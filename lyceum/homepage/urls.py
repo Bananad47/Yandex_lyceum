@@ -1,6 +1,6 @@
 from django.urls import path
-import views  # это homepage views
+import homepage.views
 
 urlpatterns = [
-    path("", views.index),
+    path("", homepage.views.index),
 ]
