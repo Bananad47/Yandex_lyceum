@@ -22,7 +22,7 @@ deactivate
 ## Запуск проекта
 ```
 git clone https://github.com/Bananad47/Yandex_lyceum
-pip install -r requirements\main.txt
+pip install -r requirements\prod_req.txt
 cd lyceum
 ```
 
@@ -36,7 +36,7 @@ python manage.py runserver
 ```
 
 ## Зависимости
-#### В проекте есть 3 файла с зависимостями: `dev_req.txt`, `test_req.txt` и `main_req.txt`.
-#### `main_req.txt` - список зависимостей для запуска проекта.
+#### В проекте есть 3 файла с зависимостями: `dev_req.txt`, `test_req.txt` и `prod_req.txt`.
+#### `prod_req.txt` - список зависимостей для запуска проекта.
 #### `dev_req.txt` - список зависимостей для разработки.
 #### `test_req.txt` - список зависимостей для тестирования.
