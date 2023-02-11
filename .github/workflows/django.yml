@@ -29,4 +29,4 @@ jobs:
         pip install -r requirements/dev_req.txt 
     - name: Run Tests
       run: |
-        python \lyceum\manage.py test
+        python lyceum\manage.py test
