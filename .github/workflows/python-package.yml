@@ -25,7 +25,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements/test_req.txt
         pip install -r requirements/main_req.txt
-        pip install -r requirements/dev_req.txt
+        pip install -r requirements/dev_req.txt >> $GITHUB_OUTPUT
 
 
   lint:
