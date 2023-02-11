@@ -35,12 +35,13 @@ jobs:
     steps:
       - name: Check out source repository
         uses: actions/checkout@v3
+
       - name: Set up Python environment
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
-      -name: black Lint
+      - name: black Lint
         uses: psf/black@stable
 
       - name: flake8 import Lint
