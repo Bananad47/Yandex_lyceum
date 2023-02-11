@@ -27,6 +27,8 @@ jobs:
         pip install -r requirements/test_req.txt
         pip install -r requirements/prod_req.txt
         pip install -r requirements/dev_req.txt 
+    - name: Change Directory
+      run: cd lyceum
     - name: Run Tests
       run: |
-        python lyceum\manage.py test
+        python manage.py test
