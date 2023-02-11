@@ -27,17 +27,8 @@ jobs:
         pip install -r requirements/main_req.txt
         pip install -r requirements/dev_req.txt
 
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --show-source --statistics 
 
-    - name: Lint with black
-      run:
-        black lyceum/ --check
-
-
-  flake8-lint:
+  lint:
     runs-on: ubuntu-latest
     name: Lint
     needs: build
@@ -48,6 +39,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
+
+      -name: black Lint
+        uses: psf/black@stable
 
       - name: flake8 import Lint
         uses: py-actions/flake8@v2
