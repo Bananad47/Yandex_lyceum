@@ -36,6 +36,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "middleware.middleware.SimpleMiddleware",
 ]
 
 
@@ -107,3 +108,5 @@ STATIC_URL = "/static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REVERSE_RUSSIAN_WORDS = True
