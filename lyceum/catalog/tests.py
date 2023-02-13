@@ -74,7 +74,7 @@ class StaticURLTests(TestCase):
         bad_tests_list = [
             "/catalog/convector/-1/",
             "/catalog/convector/12.34/",
-            "/catalog/convector/abc/",
+            "/catalog/convector/abc",
         ]
 
         for request in good_tests_list:
