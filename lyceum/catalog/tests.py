@@ -7,8 +7,30 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_item_detail_endpoint(self):
-        response = Client().get("/catalog/55")
-        self.assertEqual(response.status_code, 200)
+        good_tests_list = [
+            "/catalog/55",
+            "/catalog/12354",
+            "/catalog/1",
+            "/catalog/777",
+        ]
+
+        bad_tests_list = [
+            "/catalog/-1",
+            "/catalog/-23",
+            "/catalog/asdf",
+            "/catalog/i123",
+            "/catalog/123/123",
+            "/catalog/123/asdf",
+            "/catalog/asdf/123",
+        ]
+
+        for request in good_tests_list:
+            response = Client().get(request)
+            self.assertEqual(response.status_code, 200)
+
+        for request in bad_tests_list:
+            response = Client().get(request)
+            self.assertNotEqual(response.status_code, 200)
 
     def test_coffee_endpoint(self):
         response = Client().get("/coffee")
@@ -35,7 +57,6 @@ class StaticURLTests(TestCase):
 
         for request in good_tests_list:
             response = Client().get(request)
-            print(request)
             self.assertEqual(response.status_code, 200)
 
         for request in bad_tests_list:
@@ -58,7 +79,6 @@ class StaticURLTests(TestCase):
 
         for request in good_tests_list:
             response = Client().get(request)
-            print(request)
             self.assertEqual(response.status_code, 200)
 
         for request in bad_tests_list:
