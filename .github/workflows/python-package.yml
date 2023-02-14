@@ -64,6 +64,4 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           plugins: "flake8-quotes==3.3.2"
-      
-      - name: isort Link
-        uses: isort/isort-action@v1.0.0
+
