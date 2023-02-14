@@ -1,8 +1,9 @@
 from django.urls import path, re_path, register_converter
+
 from catalog import converters, views
 
 
-register_converter(converters.SixDigitProductIdConvecter, "id")
+register_converter(converters.PositiveNumber, "id")
 
 urlpatterns = [
     path("", views.item_list),
