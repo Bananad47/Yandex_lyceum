@@ -1,3 +1,4 @@
 [flake8]
 inline-quotes = "
 exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,venv,.venv
+import-order-style = google
