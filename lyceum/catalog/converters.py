@@ -1,5 +1,5 @@
 class SixDigitProductIdConvecter:
-    regex = "[0-9]+"
+    regex = "[1-9][0-9]+|[1-9]"
 
     def to_python(self, value):
         return value

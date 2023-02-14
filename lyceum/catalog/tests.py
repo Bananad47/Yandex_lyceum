@@ -22,6 +22,8 @@ class StaticURLTests(TestCase):
             "/catalog/123/123/",
             "/catalog/123/asdf/",
             "/catalog/asdf/123/",
+            "/catalog/8.24/",
+            "/catalog/-8.24/",
         ]
 
         for request in good_tests_list:
@@ -32,27 +34,29 @@ class StaticURLTests(TestCase):
             response = Client().get(request)
             self.assertNotEqual(response.status_code, 200)
 
-    def test_coffee_endpoint(self):
-        response = Client().get("/coffee/")
-        self.assertEqual(response.status_code, 418)
-        self.assertEqual(
-            response.getvalue().decode("utf-8"), "<body>Я чайник</body>"
-        )
-
     def test_regular_page(self):
         good_tests_list = [
-            "/catalog/re/122234/hello/",
-            "/catalog/re/12311114/hello/about/",
-            "/catalog/re/134/1234/",
-            "/catalog/re/123/",
-            "/catalog/re/5/",
+            "/catalog/re/122234/",
+            "/catalog/re/12311114/",
+            "/catalog/re/134/",
+            "/catalog/re/1/",
+            "/catalog/re/8/",
+            "/catalog/re/5555555555/",
         ]
 
         bad_tests_list = [
+            "/catalog/re/1.25/",
             "/catalog/re/abc/abc/",
             "/catalog/re/i1234/",
             "/catalog/re/1234c/ddd/ddd",
             "/catalog/re/0/",
+            "/catalog/re/-23/",
+            "/catalog/re/5-3/",
+            "/catalog/re/-0/",
+            "/catalog/re/122234/ddd/ddd",
+            "/catalog/re/122234/1235/",
+            "/catalog/re/0+1/",
+            "/catalog/re/-8.24/",
         ]
 
         for request in good_tests_list:
@@ -74,7 +78,13 @@ class StaticURLTests(TestCase):
         bad_tests_list = [
             "/catalog/convector/-1/",
             "/catalog/convector/12.34/",
-            "/catalog/convector/abc",
+            "/catalog/convector/abc/",
+            "/catalog/convector/0/",
+            "/catalog/convector/-17/",
+            "/catalog/convector/0-1/",
+            "/catalog/convector/fd/17/",
+            "/catalog/convector/17/17/",
+            "/catalog/convector/-8.24/",
         ]
 
         for request in good_tests_list:
