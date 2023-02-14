@@ -18,8 +18,6 @@ class ReverseMiddleware:
             reversed_text = re.sub(
                 r"\s[а-яА-Я]+\s", lambda m: m.group(0)[::-1], response_text
             )
-            print(response_text)
-            print(reversed_text)
             response.content = reversed_text
 
         return response
