@@ -1,8 +1,7 @@
-from dotenv import load_dotenv
-
-from pathlib import Path
 import os
+from pathlib import Path
 
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +36,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "mymiddleware.reversed_middleware.SimpleMiddleware",
+    "mymiddleware.reverse_middleware.ReverseMiddleware",
 ]
 
 

@@ -1,9 +1,9 @@
-from django.conf import settings
-
 import re
 
+from django.conf import settings
 
-class SimpleMiddleware:
+
+class ReverseMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.cnt = 0
