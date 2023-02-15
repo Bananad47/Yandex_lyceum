@@ -13,6 +13,7 @@ DEBUG = os.getenv("DEBUG", False)
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ["*"])
 
+REVERSE_RUSSIAN_WORDS = os.getenv("REVERSE_RUSSIAN_WORDS", False)
 
 INSTALLED_APPS = [
     "about.apps.AboutConfig",
@@ -108,5 +109,3 @@ STATIC_URL = "/static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-REVERSE_RUSSIAN_WORDS = True

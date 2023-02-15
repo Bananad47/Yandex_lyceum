@@ -16,7 +16,7 @@ class ReverseMiddleware:
             self.cnt = 0
             response_text = response.getvalue().decode("utf-8")
             reversed_text = re.sub(
-                r"\s[а-яА-Я]+\s", lambda m: m.group(0)[::-1], response_text
+                r"(?:\s|[!.,?<])[а-яА-Я]+(?:\s|[!.,?<])", lambda m: m.group(0)[::-1], response_text
             )
             response.content = reversed_text
 
