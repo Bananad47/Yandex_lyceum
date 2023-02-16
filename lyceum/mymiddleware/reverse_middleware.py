@@ -12,16 +12,14 @@ class ReverseMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         self.cnt += 1
-        print(self.cnt)
         if self.state and self.cnt >= 10:
             self.cnt = 0
             response_text = response.getvalue().decode("utf-8")
             reversed_text = re.sub(
                 r"\b([А-Яа-яёЁ]+[^a-zA-Z<\W])\b",
                 lambda m: m.group(0)[::-1],
-                response_text
+                response_text,
             )
-            print(reversed_text)
             response.content = reversed_text
 
         return response

@@ -10,6 +10,7 @@ class ReverseMiddlewareTests(TestCase):
 
         settings.REVERSE_RUSSIAN_WORDS = True
         client = Client()
+
         tests = ["/coffee/", "/about/", "/catalog/15/", "/catalog/"]
         for test in tests:
             for i in range(9):
@@ -22,7 +23,9 @@ class ReverseMiddlewareTests(TestCase):
 
             response = client.get(test).content.decode("utf-8")
             reversed_response = re.sub(
-                r"\s[а-яА-Я]+\s", lambda m: m.group(0)[::-1], response
+                r"\b([А-Яа-яёЁ]+[^a-zA-Z<\W])\b",
+                lambda m: m.group(0)[::-1],
+                response,
             )
             response_without_middleware = (
                 Client().get(test).content.decode("utf-8")

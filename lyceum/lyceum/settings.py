@@ -16,6 +16,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ["*"])
 REVERSE_RUSSIAN_WORDS = os.getenv("REVERSE_RUSSIAN_WORDS", False)
 
 INSTALLED_APPS = [
+    "coffee.apps.CoffeeConfig",
     "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
     "catalog.apps.CatalogConfig",
