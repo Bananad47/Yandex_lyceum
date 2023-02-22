@@ -115,7 +115,7 @@ class ModelsTests(TestCase):
             name="Тестовый Тег",
             slug="test-tag-slug",
         )
-    
+
     def test_unnable_create_one_letter(self):
         item_count = models.Item.objects.count()
         with self.assertRaises(ValidationError):
@@ -128,10 +128,7 @@ class ModelsTests(TestCase):
             self.item.save()
             self.item.tags.add(ModelsTests.tag)
 
-        self.assertEqual(
-            models.Item.objects.count(),
-            item_count
-        )
+        self.assertEqual(models.Item.objects.count(), item_count)
 
     def test_create(self):
         item_count = models.Item.objects.count()
@@ -144,7 +141,4 @@ class ModelsTests(TestCase):
         self.item.save()
         self.item.tags.add(ModelsTests.tag)
 
-        self.assertEqual(
-            models.Item.objects.count(),
-            item_count+1
-        )
+        self.assertEqual(models.Item.objects.count(), item_count + 1)
