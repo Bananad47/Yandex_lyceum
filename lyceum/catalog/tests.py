@@ -1,5 +1,5 @@
-from django.test import Client, TestCase
 from django.core.exceptions import ValidationError
+from django.test import Client, TestCase
 
 from catalog import models
 
