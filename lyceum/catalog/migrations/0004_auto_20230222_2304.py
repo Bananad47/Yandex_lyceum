@@ -43,7 +43,8 @@ class Migration(migrations.Migration):
                 (
                     "slug",
                     models.SlugField(
-                        help_text="Роскошный и превосходный текст про категорию",
+                        help_text="Роскошный и превосходный"
+                        "текст про категорию",
                         unique=True,
                         validators=[
                             django.core.validators.MaxLengthValidator(200)
