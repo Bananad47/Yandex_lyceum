@@ -1,4 +1,7 @@
 from django.test import Client, TestCase
+from django.core.exceptions import ValidationError
+
+from catalog import models
 
 
 class StaticURLTests(TestCase):
@@ -94,3 +97,54 @@ class StaticURLTests(TestCase):
         for request in bad_tests_list:
             response = Client().get(request)
             self.assertNotEqual(response.status_code, 200)
+
+
+class ModelsTests(TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
+
+        cls.category = models.Category.objects.create(
+            is_published=True,
+            name="Тестовая категория",
+            slug="test-category-slug",
+            weight=100,
+        )
+        cls.tag = models.Tag.objects.create(
+            is_published=True,
+            name="Тестовый Тег",
+            slug="test-tag-slug",
+        )
+    
+    def test_unnable_create_one_letter(self):
+        item_count = models.Item.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = models.Item(
+                name="Тестовый товар",
+                category=self.category,
+                text="1",
+            )
+            self.item.full_clean()
+            self.item.save()
+            self.item.tags.add(ModelsTests.tag)
+
+        self.assertEqual(
+            models.Item.objects.count(),
+            item_count
+        )
+
+    def test_create(self):
+        item_count = models.Item.objects.count()
+        self.item = models.Item(
+            name="Тестовый товар",
+            category=self.category,
+            text="Превосходное описание",
+        )
+        self.item.full_clean()
+        self.item.save()
+        self.item.tags.add(ModelsTests.tag)
+
+        self.assertEqual(
+            models.Item.objects.count(),
+            item_count+1
+        )
