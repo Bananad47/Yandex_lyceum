@@ -63,7 +63,10 @@ class Item(AbstractionModel):
         verbose_name="каталог",
     )
 
-    tags = models.ManyToManyField(Tag, verbose_name="теги",)
+    tags = models.ManyToManyField(
+        Tag,
+        verbose_name="теги",
+    )
 
     class Meta:
         verbose_name = "товар"
