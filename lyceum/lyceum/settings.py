@@ -16,6 +16,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", ["*"])
 REVERSE_RUSSIAN_WORDS = os.getenv("REVERSE_RUSSIAN_WORDS", False)
 
 INSTALLED_APPS = [
+    "core.apps.CoreConfig",
     "coffee.apps.CoffeeConfig",
     "about.apps.AboutConfig",
     "homepage.apps.HomepageConfig",
@@ -110,3 +111,5 @@ STATIC_URL = "/static/"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+DEFAULT_CHARSET = "utf-8"

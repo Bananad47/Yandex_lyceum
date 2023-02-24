@@ -1,65 +1,32 @@
-from django.core.exceptions import ValidationError
 from django.core.validators import MaxLengthValidator
 from django.db import models
 
-
-def custom_validator(value):
-    value = value.lower()
-    if "превосходно" not in value and "роскошно" not in value:
-        raise ValidationError("Ваш текст не превосходен!")
+from core.models import AbstractionModel, custom_validator
 
 
-class Tag(models.Model):
-    is_published = models.BooleanField(
-        "Опубликовано",
-        help_text="Скройте или опубликуйте тег",
-        default=True,
-    )
-
-    name = models.TextField(
-        "Наименование тега",
-        help_text="Назовите тег",
-        validators=[
-            MaxLengthValidator(150),
-        ],
-    )
-
+class Tag(AbstractionModel):
     slug = models.SlugField(
         "Название тега",
         unique=True,
-        help_text="Роскошный и превосходный текст про тег",
+        help_text="Назовите тег",
         validators=[
             MaxLengthValidator(200),
         ],
     )
 
     class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
+        verbose_name = "тег"
+        verbose_name_plural = "теги"
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
-class Category(models.Model):
-    is_published = models.BooleanField(
-        "Опубликовано",
-        help_text="Скройте или опубликуйте категорию",
-        default=True,
-    )
-
-    name = models.TextField(
-        "Наименование категории",
-        help_text="Назовите категорию",
-        validators=[
-            MaxLengthValidator(150),
-        ],
-    )
-
+class Category(AbstractionModel):
     slug = models.SlugField(
         "Название категории",
         unique=True,
-        help_text="Роскошный и превосходный текст про категорию",
+        help_text="Назовите категорию",
         validators=[
             MaxLengthValidator(200),
         ],
@@ -72,47 +39,35 @@ class Category(models.Model):
     )
 
     class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
+        verbose_name = "категория"
+        verbose_name_plural = "категории"
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
-class Item(models.Model):
-    is_published = models.BooleanField(
-        "Опубликовано",
-        help_text="Скройте или опубликуйте товар",
-        default=True,
-    )
-
-    name = models.TextField(
-        "Наименование товара",
-        help_text="Назовите товар",
-        validators=[
-            MaxLengthValidator(150),
-        ],
-        default="Гениальное наименование роскошного товара!",
-    )
-
+class Item(AbstractionModel):
     text = models.TextField(
         "Описание товара",
         help_text="Опишите товар",
         validators=[
             custom_validator,
         ],
-        default="Превосходное описание роскошного товара!",
+        default="Превосходно",
     )
 
     category = models.ForeignKey(
-        "category", on_delete=models.CASCADE, related_name="catalog_items"
+        "category",
+        on_delete=models.CASCADE,
+        related_name="catalog_items",
+        verbose_name="каталог",
     )
 
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, verbose_name="теги",)
 
     class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
+        verbose_name = "товар"
+        verbose_name_plural = "товары"
 
     def __str__(self):
         return self.name
