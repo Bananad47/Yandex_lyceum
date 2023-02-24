@@ -1,11 +1,12 @@
+import re
+
 from django.core.exceptions import ValidationError
 from django.db import models
 
 
 def custom_validator(value):
-    value = value.lower().split()
-    if "превосходно" not in value and "роскошно" not in value:
-        raise ValidationError("Ваш текст не превосходен!")
+    if re.findall(r"\b(превосходно|раскошно)\b", value.lower()) == []:
+        raise ValidationError("Ваш текст не превосходен и не роскошен!")
 
 
 class AbstractionModel(models.Model):
