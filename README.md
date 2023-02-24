@@ -45,3 +45,6 @@ python manage.py runserver
 #### `prod_req.txt` - список зависимостей для запуска проекта.
 #### `dev_req.txt` - список зависимостей для разработки.
 #### `test_req.txt` - список зависимостей для тестирования.
+
+## ER-диаграмма
+[![ER diagramm](https://github.com/Bananad47/Yandex_lyceum/blob/main/ne_full.jpg)]
