@@ -8,9 +8,7 @@ def custom_validator(*words):
     def validate(value):
         for word in words:
             if re.findall(r"\b({})\b".format(word), value.lower()) == []:
-                raise ValidationError(
-                    f"Ваш текст не содержит слова {word}!"
-                )
+                raise ValidationError(f"Ваш текст не содержит слова {word}!")
 
     return validate
 
