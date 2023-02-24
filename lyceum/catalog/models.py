@@ -51,7 +51,7 @@ class Item(AbstractionModel):
         "Описание товара",
         help_text="Опишите товар",
         validators=[
-            custom_validator,
+            custom_validator("превосходно", "роскошно"),
         ],
         default="Превосходно",
     )

@@ -4,9 +4,15 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
-def custom_validator(value):
-    if re.findall(r"\b(превосходно|раскошно)\b", value.lower()) == []:
-        raise ValidationError("Ваш текст не превосходен и не роскошен!")
+def custom_validator(*words):
+    def validate(value):
+        for word in words:
+            if re.findall(r"\b({})\b".format(word), value.lower()) == []:
+                raise ValidationError(
+                    f"Ваш текст не содержит слова {word}!"
+                )
+
+    return validate
 
 
 class AbstractionModel(models.Model):
