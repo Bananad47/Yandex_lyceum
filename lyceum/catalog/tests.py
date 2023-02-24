@@ -135,7 +135,7 @@ class ModelsTests(TestCase):
         self.item = models.Item(
             name="Тестовый товар",
             category=self.category,
-            text="Превосходное описание",
+            text="Превосходно",
         )
         self.item.full_clean()
         self.item.save()
