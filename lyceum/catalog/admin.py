@@ -16,6 +16,7 @@ class ItemAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
+    exclude = ("canonical_name",)
     list_display = (
         Tag.slug.field.name,
         Tag.is_published.field.name,
@@ -26,6 +27,7 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    exclude = ("canonical_name",)
     list_display = (
         Category.slug.field.name,
         Category.is_published.field.name,
