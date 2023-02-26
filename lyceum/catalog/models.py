@@ -6,7 +6,7 @@ from core.models import AbstractionModel, custom_validator
 
 class Tag(AbstractionModel):
     slug = models.SlugField(
-        "Название тега",
+        "название тега",
         unique=True,
         help_text="Назовите тег",
         validators=[
@@ -24,7 +24,7 @@ class Tag(AbstractionModel):
 
 class Category(AbstractionModel):
     slug = models.SlugField(
-        "Название категории",
+        "название категории",
         unique=True,
         help_text="Назовите категорию",
         validators=[
@@ -33,7 +33,7 @@ class Category(AbstractionModel):
     )
 
     weight = models.PositiveSmallIntegerField(
-        "Вес категории",
+        "вес категории",
         help_text="Укажите вес категории",
         default=100,
     )
@@ -48,12 +48,12 @@ class Category(AbstractionModel):
 
 class Item(AbstractionModel):
     text = models.TextField(
-        "Описание товара",
+        "описание товара",
         help_text="Опишите товар",
         validators=[
             custom_validator("превосходно", "роскошно"),
         ],
-        default="Превосходно",
+        default="Превосходно и роскошно",
     )
 
     category = models.ForeignKey(

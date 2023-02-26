@@ -1,10 +1,12 @@
 import re
+from functools import wraps
 
 from django.core.exceptions import ValidationError
 from django.db import models
 
 
 def custom_validator(*words):
+    @wraps(custom_validator)
     def validate(value):
         for word in words:
             if re.findall(r"\b({})\b".format(word), value.lower()) == []:
@@ -15,12 +17,12 @@ def custom_validator(*words):
 
 class AbstractionModel(models.Model):
     is_published = models.BooleanField(
-        "Опубликовано",
+        "опубликовано",
         default=True,
     )
 
     name = models.CharField(
-        "Наименование",
+        "наименование",
         help_text="Укажите имя",
         max_length=150,
     )
