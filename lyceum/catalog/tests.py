@@ -110,19 +110,34 @@ class ModelsTests(TestCase):
             slug="test-category-slug",
             weight=100,
         )
+
         cls.tag = models.Tag.objects.create(
             is_published=True,
             name="Тестовый Тег",
             slug="test-tag-slug",
         )
 
-    def test_unnable_create_one_letter(self):
+    def test_unnable_create_not_luxurious_text(self):
         item_count = models.Item.objects.count()
         with self.assertRaises(ValidationError):
             self.item = models.Item(
                 name="Тестовый товар",
                 category=self.category,
-                text="1",
+                text="Превосходно",
+            )
+            self.item.full_clean()
+            self.item.save()
+            self.item.tags.add(ModelsTests.tag)
+
+        self.assertEqual(models.Item.objects.count(), item_count)
+
+    def test_unnable_create_not_great_text(self):
+        item_count = models.Item.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = models.Item(
+                name="Тестовый товар",
+                category=self.category,
+                text="Роскошно",
             )
             self.item.full_clean()
             self.item.save()
@@ -142,3 +157,37 @@ class ModelsTests(TestCase):
         self.item.tags.add(ModelsTests.tag)
 
         self.assertEqual(models.Item.objects.count(), item_count + 1)
+
+    def test_unnable_create_not_unique_tag_name(self):
+        # self.tag1 = models.Tag.objects.create(
+        #     is_published=True,
+        #     name="Тестовый Тег",
+        #     slug="test-tag1-slug",
+        # )
+        # self.tag1.full_clean()
+        # self.tag1.save()
+        self.tag_count = models.Tag.objects.count()
+        with self.assertRaises(ValidationError):
+            self.tag2 = models.Tag.objects.create(
+                is_published=True,
+                name="Тестовый Тег",
+                slug="test-tag2-slug",
+            )
+            self.tag2.full_clean()
+            self.tag2.save()
+
+        self.assertEqual(models.Tag.objects.count(), self.tag_count)
+
+    def test_unnable_create_not_unique_category_name(self):
+        self.category_count = models.Category.objects.count()
+        with self.assertRaises(ValidationError):
+            self.category2 = models.Category.objects.create(
+                is_published=True,
+                name="Тестовая категория",
+                slug="test-category2-slug",
+                weight=100,
+                )
+            self.category2.full_clean()
+            self.category2.save()
+        print([(x.name, x.slug, x.canonical_name) for x in models.Category.objects.filter()])
+        self.assertEqual(models.Category.objects.count(), self.category_count)
