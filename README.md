@@ -47,4 +47,4 @@ python manage.py runserver
 #### `test_req.txt` - список зависимостей для тестирования.
 
 ## ER-диаграмма
-[![ER diagramm](https://github.com/Bananad47/Yandex_lyceum/blob/main/ne_full.jpg)]
+![ER diagramm](https://github.com/Bananad47/Yandex_lyceum/blob/main/ER%20diagram.png)
