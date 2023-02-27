@@ -27,17 +27,14 @@ class AbstractionModel(models.Model):
         abstract = True
 
     def generate_canonical_name(self) -> str:
-        canonical_name = translit(
-            "".join(re.findall(r"[^_]\w", self.name.lower())),
+        canonical_name = "".join(re.findall(r"[a-z0-9]", translit(
+            self.name.lower(),
             language_code="ru",
             reversed=True,
-        )
+            ))),
 
+        print(canonical_name, self.name.lower())
         return canonical_name
-
-    def save(self, *args, **kwargs):  # noqa: FNE003
-        self.canonical_name = self.generate_canonical_name()
-        super().save(*args, **kwargs)
 
     def clean(self):
         self.canonical_name = self.generate_canonical_name()

@@ -109,7 +109,13 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIR = [
+    BASE_DIR / "static_dev",
+]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DEFAULT_CHARSET = "utf-8"
+
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
