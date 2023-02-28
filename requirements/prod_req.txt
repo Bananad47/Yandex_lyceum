@@ -2,3 +2,6 @@ Django==3.2.16
 python-dotenv==0.21.1
 transliterate==1.10.2
 pillow==9.4.0
+django-cleanup==7.0.0
+sorl-thumbnail==12.9.0
+django-tinymce4-lite==1.8.0

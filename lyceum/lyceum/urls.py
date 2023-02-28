@@ -8,6 +8,7 @@ urlpatterns = [
     path("about/", include("about.urls")),
     path("coffee/", include("coffee.urls")),
     path("admin/", admin.site.urls),
+    path("tinymce/", include("tinymce.urls")),
 ]
 
 

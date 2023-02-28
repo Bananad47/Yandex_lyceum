@@ -27,11 +27,18 @@ class AbstractionModel(models.Model):
         abstract = True
 
     def generate_canonical_name(self) -> str:
-        canonical_name = "".join(re.findall(r"[a-z0-9]", translit(
-            self.name.lower(),
-            language_code="ru",
-            reversed=True,
-            ))),
+        canonical_name = (
+            "".join(
+                re.findall(
+                    r"[a-z0-9]",
+                    translit(
+                        self.name.lower(),
+                        language_code="ru",
+                        reversed=True,
+                    ),
+                )
+            ),
+        )
 
         print(canonical_name, self.name.lower())
         return canonical_name
