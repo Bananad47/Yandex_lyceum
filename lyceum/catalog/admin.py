@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 
-from catalog.models import Category, GalleryModel, Item, Tag, MainImageModel
+from catalog.models import Category, GalleryModel, Item, MainImageModel, Tag
 from tinymce.widgets import TinyMCE
 
 
@@ -48,4 +48,3 @@ class MainImageModelAdmin(admin.ModelAdmin):
 @admin.register(GalleryModel)
 class GalleryModelAdmin(admin.ModelAdmin):
     list_display = ("image_tmb",)
-

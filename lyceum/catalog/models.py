@@ -1,7 +1,7 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
 
-from core.models import AbstractionModel, AbstractionImageModel
+from core.models import AbstractionImageModel, AbstractionModel
 from core.validators import custom_validator
 
 

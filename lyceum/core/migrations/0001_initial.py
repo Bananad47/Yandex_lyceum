@@ -4,22 +4,34 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AbstractionImageModel',
+            name="AbstractionImageModel",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='catalog', verbose_name='будет приведено к размеру 300x300')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        upload_to="catalog",
+                        verbose_name="будет приведено к размеру 300x300",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'изображение',
-                'verbose_name_plural': 'изображения',
+                "verbose_name": "изображение",
+                "verbose_name_plural": "изображения",
             },
         ),
     ]

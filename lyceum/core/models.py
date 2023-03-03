@@ -4,8 +4,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.safestring import mark_safe
 
-from transliterate import translit
 from sorl.thumbnail import get_thumbnail
+from transliterate import translit
 
 
 class AbstractionModel(models.Model):

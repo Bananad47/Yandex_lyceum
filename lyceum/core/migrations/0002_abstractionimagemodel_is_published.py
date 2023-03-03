@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='abstractionimagemodel',
-            name='is_published',
-            field=models.BooleanField(default=True, verbose_name='опубликовано'),
+            model_name="abstractionimagemodel",
+            name="is_published",
+            field=models.BooleanField(
+                default=True, verbose_name="опубликовано"
+            ),
         ),
     ]

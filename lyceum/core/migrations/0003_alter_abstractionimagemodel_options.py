@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0002_abstractionimagemodel_is_published'),
+        ("core", "0002_abstractionimagemodel_is_published"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='abstractionimagemodel',
+            name="abstractionimagemodel",
             options={},
         ),
     ]
