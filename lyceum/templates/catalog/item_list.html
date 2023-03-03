@@ -9,8 +9,37 @@
       <div class="col-4 offset-4">
         <h1>Каталог товаров</h1>
       </div>
+      <div class="row row-cols-4 g-5">
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/apple_watch.jpeg' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Apple watch 7th gen" price="159.99" image_url=image_url %}
+        </div>
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/coffee.jpg' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Кофе" price="159.99" image_url=image_url %}
+        </div>
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/cat_prosto_cat.jpg' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Кот недорого" price="159.99" image_url=image_url %}
+        </div>
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/cat_sfinks.jpg' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Кот дорого" price="159.99" image_url=image_url %}
+        </div>
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/mandarin.jpg' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Апельсин" price="159.99" image_url=image_url %}
+        </div>
+        <div class="col d-flex align-items-stretch">
+          {% static 'img/temp/orange.jfif' as image_url %}
+          {% include 'includes/card.html' with card_text="TEST text" card_title="Мандарин" price="159.99" image_url=image_url %}
+        </div>
 
-      {% include 'includes/card.html' %}
+
+
+
+
+      </div>
     </div>
   </div>
 
