@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 
-from catalog.models import Category, ImageModel, Item, Tag
+from catalog.models import Category, GalleryModel, Item, Tag, MainImageModel
 from tinymce.widgets import TinyMCE
 
 
@@ -40,6 +40,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display_links = ("slug",)
 
 
-@admin.register(ImageModel)
-class ImageModelAdmin(admin.ModelAdmin):
+@admin.register(MainImageModel)
+class MainImageModelAdmin(admin.ModelAdmin):
     list_display = ("image_tmb",)
+
+
+@admin.register(GalleryModel)
+class GalleryModelAdmin(admin.ModelAdmin):
+    list_display = ("image_tmb",)
+

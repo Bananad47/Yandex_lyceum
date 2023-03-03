@@ -2,8 +2,10 @@ import re
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.safestring import mark_safe
 
 from transliterate import translit
+from sorl.thumbnail import get_thumbnail
 
 
 class AbstractionModel(models.Model):
@@ -58,3 +60,25 @@ class AbstractionModel(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AbstractionImageModel(models.Model):
+    image = models.ImageField(
+        "будет приведено к размеру 300x300",
+        upload_to="catalog",
+    )
+
+    is_published = models.BooleanField(
+        "опубликовано",
+        default=True,
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", quality=51, crop="center")
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(f"<img src='{self.image.url}' width='50'>")
+        return "нет изображения"
+
+    image_tmb.allow_tags = True

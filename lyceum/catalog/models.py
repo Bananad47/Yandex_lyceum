@@ -1,10 +1,8 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
-from django.utils.safestring import mark_safe
 
-from core.models import AbstractionModel
+from core.models import AbstractionModel, AbstractionImageModel
 from core.validators import custom_validator
-from sorl.thumbnail import get_thumbnail
 
 
 class Tag(AbstractionModel):
@@ -70,26 +68,27 @@ class Item(AbstractionModel):
         verbose_name_plural = "товары"
 
 
-class ImageModel(models.Model):
-    image = models.ImageField(
-        "будет приведено к ширине 1280px",
-        upload_to="catalog",
+class MainImageModel(AbstractionImageModel):
+    item = models.OneToOneField(
+        Item,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        verbose_name="товар",
     )
 
-    def get_image_x1280(self):
-        return get_thumbnail(self.image, "1280", quality=51)
+    class Meta:
+        verbose_name = "превью"
+        verbose_name_plural = "превью"
 
-    def get_image_400x300(self):
-        return get_thumbnail(self.image, "400x300", quality=51, crop="center")
 
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(f"<img src='{self.image.url}' width='50'>")
-        return "нет изображения"
-
-    image_tmb.short_description = "превью"
-    image_tmb.allow_tags = True
+class GalleryModel(AbstractionImageModel):
+    item = models.ForeignKey(
+        "item",
+        on_delete=models.CASCADE,
+        related_name="gallery_items",
+        verbose_name="товар",
+    )
 
     class Meta:
-        verbose_name = "изображение"
-        verbose_name_plural = "изображения"
+        verbose_name = "галерея"
+        verbose_name_plural = "галерея"
