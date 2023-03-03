@@ -7,7 +7,7 @@ from core.validators import custom_validator
 
 class Tag(AbstractionModel):
     slug = models.SlugField(
-        "слаг",
+        "слаг тега",
         unique=True,
         help_text="слаг",
         validators=[
@@ -22,7 +22,7 @@ class Tag(AbstractionModel):
 
 class Category(AbstractionModel):
     slug = models.SlugField(
-        "слаг",
+        "слаг категории",
         unique=True,
         help_text="слаг",
         validators=[
