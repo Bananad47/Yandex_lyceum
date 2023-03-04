@@ -9,7 +9,12 @@ class ReverseMiddlewareTests(TestCase):
         settings.REVERSE_RUSSIAN_WORDS = True
         client = Client()
 
-        tests = ["/coffee/", "/about/", "/catalog/15/", "/catalog/"]
+        tests = [
+            "/ru/coffee/",
+            "/ru/about/",
+            "/ru/catalog/15/",
+            "/ru/catalog/",
+        ]
         for test in tests:
             for i in range(9):
                 response = client.get(test).content.decode("utf-8")
