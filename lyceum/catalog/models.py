@@ -1,8 +1,10 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
+from django.utils.safestring import mark_safe
 
-from core.models import AbstractionImageModel, AbstractionModel
+from core.models import AbstractionModel
 from core.validators import custom_validator
+from sorl.thumbnail import get_thumbnail
 
 
 class Tag(AbstractionModel):
@@ -41,6 +43,32 @@ class Category(AbstractionModel):
         verbose_name_plural = "категории"
 
 
+class GalleryModel(models.Model):
+    image = models.ImageField(
+        "будет приведено к размеру 300x300",
+        upload_to="catalog/gallery",
+    )
+
+    item = models.ForeignKey(
+        "item",
+        on_delete=models.CASCADE,
+        related_name="gallery_items",
+        verbose_name="товар",
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", quality=51, crop="center")
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(f"<img src='{self.image.url}' width='50'>")
+        return "нет изображения"
+
+    class Meta:
+        verbose_name = "галерея"
+        verbose_name_plural = "галерея"
+
+
 class Item(AbstractionModel):
     text = models.TextField(
         "описание товара",
@@ -63,32 +91,22 @@ class Item(AbstractionModel):
         verbose_name="теги",
     )
 
+    preview = models.ImageField(
+        "превью",
+        help_text="будет приведено к размеру 300x300",
+        upload_to="catalog/preview",
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(
+            self.impreviewage, "300x300", quality=51, crop="center"
+        )
+
+    def image_tmb(self):
+        if self.preview:
+            return mark_safe(f"<img src='{self.preview.url}' width='50'>")
+        return "нет изображения"
+
     class Meta:
         verbose_name = "товар"
         verbose_name_plural = "товары"
-
-
-class MainImageModel(AbstractionImageModel):
-    item = models.OneToOneField(
-        Item,
-        on_delete=models.CASCADE,
-        primary_key=True,
-        verbose_name="товар",
-    )
-
-    class Meta:
-        verbose_name = "превью"
-        verbose_name_plural = "превью"
-
-
-class GalleryModel(AbstractionImageModel):
-    item = models.ForeignKey(
-        "item",
-        on_delete=models.CASCADE,
-        related_name="gallery_items",
-        verbose_name="товар",
-    )
-
-    class Meta:
-        verbose_name = "галерея"
-        verbose_name_plural = "галерея"
