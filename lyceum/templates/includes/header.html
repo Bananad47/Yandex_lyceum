@@ -14,7 +14,8 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a {% if request.path == "/" %} class="nav-link active" {% else %}  class="nav-link" {% endif %} href="/">{% trans "На главную" %}</a>
+              {% url 'homepage:home' as my_view %}
+              <a {% if request.path == my_view %} class="nav-link active" {% else %}  class="nav-link" {% endif %} href="/">{% trans "На главную" %}</a>
             </li>
             <li class="nav-item">
               {% url 'about:description' as my_view %}
