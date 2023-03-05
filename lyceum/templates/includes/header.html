@@ -5,7 +5,7 @@
 <header class="p-3 mb-3 border-bottom">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="{%url 'homepage:home'%}">
           <img src="{% static '/img/icons/icon100.png' %}" alt="Logo" width="50" height="40" class="d-inline-block align-text-top">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,18 +13,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
+            {% with request.resolver_match.view_name as view_name %}
             <li class="nav-item">
-              {% url 'homepage:home' as my_view %}
-              <a {% if request.path == my_view %} class="nav-link active" {% else %}  class="nav-link" {% endif %} href="/">{% trans "На главную" %}</a>
+              <a class="nav-link {% if 'homepage:home' == view_name %}active {% endif %}" href="{%url 'homepage:home'%}">{% trans "На главную" %}</a>
             </li>
             <li class="nav-item">
-              {% url 'about:description' as my_view %}
-              <a {% if request.path ==  my_view %} class="nav-link active" {% else %}  class="nav-link" {% endif %} href="{%url 'about:description'%}">{% trans "О проекте" %}</a>
+              <a class="nav-link {% if 'about:description' == view_name %}active {% endif %}" href="{%url 'about:description'%}">{% trans "О проекте" %}</a>
             </li>
             <li class="nav-item">
-              {% url 'catalog:item_list' as my_view %}
-              <a {% if request.path ==  my_view %} class="nav-link active" {% else %}  class="nav-link" {% endif %} href="{%url 'catalog:item_list'%}">{% trans "Список товаров" %}</a>
+              <a class="nav-link {% if 'catalog:item_list' == view_name %}active {% endif %}" href="{%url 'catalog:item_list'%}">{% trans "Список товаров" %}</a>
             </li>
+            {% endwith %}
           </ul>
         </div>
       </div>
