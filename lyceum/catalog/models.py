@@ -79,6 +79,11 @@ class Item(AbstractionModel):
         default="Превосходно и роскошно",
     )
 
+    is_on_main = models.BooleanField(
+        "на главной",
+        default=False,
+    )
+
     category = models.ForeignKey(
         "category",
         on_delete=models.CASCADE,
@@ -99,7 +104,7 @@ class Item(AbstractionModel):
 
     def get_image_300x300(self):
         return get_thumbnail(
-            self.impreviewage, "300x300", quality=51, crop="center"
+            self.preview, "300x300", quality=51, crop="center"
         )
 
     def image_tmb(self):

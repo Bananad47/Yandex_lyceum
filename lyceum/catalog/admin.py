@@ -19,9 +19,9 @@ class ItemAdmin(admin.ModelAdmin):
     list_display = (
         Item.name.field.name,
         Item.is_published.field.name,
+        Item.is_on_main.field.name,
         "image_tmb",
     )
-    list_editable = ("is_published",)
     list_display_links = ("name",)
     filter_horizontal = ("tags",)
     formfield_overrides = {models.TextField: {"widget": TinyMCE()}}

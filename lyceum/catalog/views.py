@@ -1,10 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from catalog.models import Item
+
 
 def item_list(request):
     template = "catalog/item_list.html"
-    context = {}
+    items = Item.objects.all()
+    context = {
+        "items": items
+    }
     return render(request, template, context)
 
 
