@@ -23,3 +23,5 @@ def regular(request, number):
 
 def product_conventer_page(request, product_id):
     return HttpResponse(f"<body> id товара: {product_id}. </body>")
+
+
