@@ -5,16 +5,16 @@
     </ul>
     <p class="text-center text-muted">&copy; 2023 Попа кота, Inc</p>
     <div>
-      Дата: <span id="date">{% now "Y-m-d" %}</span>
+      Дата: <span id="date">{% now "Y" %}</span>
       <script>
         function diffDates(day_one, day_two) {
           return (day_one - day_two) / (60 * 60 * 24 * 1000);
         };
-        var date = new Date(document.getElementById("date").innerText);
+        var date = new Date('{% now "Y-m-d" %}');
         var currentdate = new Date();
         var diff = Math.abs(diffDates(date, currentdate))
         if (diff < 1){
-          document.getElementById("date").innerHTML = currentdate.getFullYear()+"-"+currentdate.getMonth()+"-"+currentdate.getDate();
+          document.getElementById("date").innerHTML = currentdate.getFullYear();
         }
       </script>
     </div>
