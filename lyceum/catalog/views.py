@@ -7,9 +7,7 @@ from catalog.models import Item
 def item_list(request):
     template = "catalog/item_list.html"
     items = Item.objects.all()
-    context = {
-        "items": items
-    }
+    context = {"items": items}
     return render(request, template, context)
 
 
@@ -23,5 +21,3 @@ def regular(request, number):
 
 def product_conventer_page(request, product_id):
     return HttpResponse(f"<body> id товара: {product_id}. </body>")
-
-
