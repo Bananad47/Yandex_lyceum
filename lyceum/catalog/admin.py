@@ -20,11 +20,15 @@ class ItemAdmin(admin.ModelAdmin):
         Item.name.field.name,
         Item.is_published.field.name,
         Item.is_on_main.field.name,
-        "image_tmb",
+        "image_tmb_description",
     )
     list_display_links = ("name",)
     filter_horizontal = ("tags",)
     formfield_overrides = {models.TextField: {"widget": TinyMCE()}}
+
+    @admin.display(description="превью")
+    def image_tmb_description(self, obj):
+        return obj.image_tmb()
 
 
 @admin.register(Tag)
