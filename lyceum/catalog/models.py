@@ -69,7 +69,30 @@ class GalleryModel(models.Model):
         verbose_name_plural = "галерея"
 
 
+class ItemManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+                .select_related("category")
+                .prefetch_related(models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(is_published=True,)
+                    .only("name")
+                    ))
+                .filter(is_published=True,
+                        is_on_main=True,
+                        category__is_published=True)
+                .only("name",
+                      "text",
+                      "preview",
+                      "category__name",
+                      "tags__name")
+                .order_by("name")
+            )
+
+
 class Item(AbstractionModel):
+    objects = ItemManager()
     text = models.TextField(
         "описание товара",
         help_text="Опишите товар",
