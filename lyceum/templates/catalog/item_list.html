@@ -10,42 +10,8 @@
       <div class="col-4 offset-4">
         <h1>Каталог товаров</h1>
       </div>
-      <div class="row row-cols-4 g-5">
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/apple_watch.jpeg' as image_url %}
-          {% include 'includes/card.html' with card_text="Новые и супер крутые эпле вотчи за дорого только у нас, покупайте!" card_title="Apple watch 7th gen" price="159.99р" image_url=image_url %}
-        </div>
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/coffee.jpg' as image_url %}
-          {% include 'includes/card.html' with card_text="Абхазский кофе" card_title="Кофе" price="159.99р" image_url=image_url %}
-        </div>
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/cat_prosto_cat.jpg' as image_url %}
-          {% include 'includes/card.html' with card_text="Кот, просто кот. Сделан из синтетических материалов, поэтому и недорого" card_title="Кот недорого" price="159.99р" image_url=image_url %}
-        </div>
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/cat_sfinks.jpg' as image_url %}
-          {% include 'includes/card.html' with card_text="Дорогой и породистый кот высшего качества! Сделан из натуральных продуктов!" card_title="Кот дорого" price="169.99р" image_url=image_url %}
-        </div>
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/mandarin.jpg' as image_url %}
-          {% include 'includes/card.html' with card_text="1 килограмм уральских апельсинов" card_title="Апельсин" price="159.99р" image_url=image_url %}
-        </div>
-        <div class="col d-flex align-items-stretch">
-          {% static 'img/temp/orange.jfif' as image_url %}
-          {% include 'includes/card.html' with card_text="1 килограмм уральских мандаринов" card_title="Мандарин" price="159.99р" image_url=image_url %}
-        </div>
-      </div>
       <div>
-        {% for item in items %}
-          <div>
-            <span>{{ item.image_tmb }}</span>
-            <span>{{ item.name }}</span>
-            <span>{{ item.text }}</span>
-          </div>
-        {% empty %}
-          <span> товаров нет <span>
-        {% endfor %}
+        {% include 'includes/items_grid.html' with items=items%}
       </div>
     </div>
   </div>

@@ -26,18 +26,7 @@
       <div class="col-4 offset-4">
         <h1>Популярные товары</h1>
       </div>
-      <div class="row row-cols-4 g-5">
-        {% for item in items %}
-        <div class="col d-flex align-items-stretch">
-          {% load thumbnail %}
-          {% thumbnail item.preview "300x300" crop="center" as preview %}
-          {% include 'includes/card.html' with card_text=item.text card_title=item.name price="159.99р" card_tags=item.tags.all|slice:":5"|join:", " image_url=preview.url card_category=item.category.name%}
-          {% endthumbnail %}
-
-        </div>
-        {% empty %}
-          <span> ничего нет </span>
-        {% endfor %}
-
+        {% include 'includes/items_grid.html' with items=items%}
+    </div>
   </div>
 {% endblock %}

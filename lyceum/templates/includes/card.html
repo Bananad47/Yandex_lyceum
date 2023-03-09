@@ -2,10 +2,14 @@
     <img src={{ image_url }} class="card-img-top">
     <div class="card-body d-flex flex-column">
       <h3 class="card-title">{{ card_title }}</h3>
-      <h6 class="card-tags">теги: {{ card_tags}}</h6>
+      <h6 class="card-tags">теги:
+      {% for tag in card_tags %}
+        <span class="badge bg-secondary"> {{ tag }}</span>
+      {% endfor %}
+      </h6>  
       <h3>цена: {{ price }}</h3>
-      <p>категория: {{ card_category }}</p>
-      <p class="card-text">описание: {{ card_text|truncatewords:10 }} </p>
+      <h6>категория: {{ card_category }}</h6>
+      <h6 class="card-text">описание: {{ card_text|truncatewords:10 }} </h6>
       <a href="#" class="btn btn-primary mt-auto">В корзину</a>
     </div>
   </div>

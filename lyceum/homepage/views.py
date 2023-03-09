@@ -5,7 +5,7 @@ from catalog.models import Item
 
 def home(request):
     template = "homepage/home.html"
-    items = Item.objects.published()
+    items = Item.objects.item_homepage()
     context = {
           "items": items
     }

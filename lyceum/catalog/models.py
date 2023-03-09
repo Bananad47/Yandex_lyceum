@@ -70,7 +70,7 @@ class GalleryModel(models.Model):
 
 
 class ItemManager(models.Manager):
-    def published(self):
+    def item_homepage(self):
         return (
             self.get_queryset()
                 .select_related("category")
@@ -89,6 +89,25 @@ class ItemManager(models.Manager):
                       "tags__name")
                 .order_by("name")
             )
+
+    def item_items_list(self):
+        return (
+            self.get_queryset()
+                .select_related("category")
+                .prefetch_related(models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(is_published=True,)
+                    .only("name")
+                    ))
+                .filter(is_published=True,
+                        category__is_published=True)
+                .only("name",
+                      "text",
+                      "preview",
+                      "category__name",
+                      "tags__name")
+                .order_by("category__name", "name")
+                )
 
 
 class Item(AbstractionModel):

@@ -6,7 +6,7 @@ from catalog.models import Item
 
 def item_list(request):
     template = "catalog/item_list.html"
-    items = Item.objects.all()
+    items = Item.objects.item_items_list()
     context = {"items": items}
     return render(request, template, context)
 
