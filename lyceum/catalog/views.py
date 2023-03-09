@@ -12,7 +12,10 @@ def item_list(request):
 
 
 def item_detail(request, item_id):
-    return HttpResponse(f"<body> Подробно элемент с id:{item_id} </body>")
+    template = "catalog/item_main_page.html"
+    item = Item.objects.item_detail(item_id)
+    context = {"item": item[0]}
+    return render(request, template, context)
 
 
 def regular(request, number):
