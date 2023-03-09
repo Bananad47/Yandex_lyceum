@@ -3,7 +3,7 @@
     <div class="col d-flex align-items-stretch">
       {% load thumbnail %}
       {% thumbnail item.preview "300x300" crop="center" as preview %}
-      {% include 'includes/card.html' with card_text=item.text card_title=item.name price="159.99р" card_tags=item.tags.all|slice:":5" image_url=preview.url card_category=item.category.name%}
+      {% include 'includes/card.html' with card_text=item.text card_title=item.name price="159.99р" card_tags=item.tags.all|slice:":5" image_url=preview.url card_category=item.category.name %}
       {% endthumbnail %}
 
     </div>
