@@ -224,3 +224,10 @@ class ContextTests(TestCase):
     def test_item_main_page_context(self):
         response = Client().get(reverse("catalog:item_detail", args=[1]))
         self.assertIn("item", response.context)
+
+    def test_items_list_context2(self):
+        response = Client().get(reverse("catalog:item_list"))
+        context = response.context["items"][0].__dict__
+        print(context)
+        self.assertNotIn("is_on_main", context)
+        self.assertNotIn("is_published", context)
