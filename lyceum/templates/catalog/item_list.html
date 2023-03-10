@@ -11,7 +11,13 @@
         <h1>Каталог товаров</h1>
       </div>
       <div>
-        {% include 'includes/items_grid.html' with items=items%}
+        {% regroup items by category.name as categories %}
+        {% for category in categories %}
+          <div>
+            <h1> {{category.grouper }} </h1>
+            {% include 'includes/items_grid.html' with items=category.list%}
+          </div>
+        {% endfor %}
       </div>
     </div>
   </div>
