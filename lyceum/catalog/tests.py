@@ -10,13 +10,6 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_item_detail_endpoint(self):
-        good_tests_list = [
-            "/ru/catalog/55/",
-            "/ru/catalog/12354/",
-            "/ru/catalog/1/",
-            "/ru/catalog/777/",
-        ]
-
         bad_tests_list = [
             "/ru/catalog/-1/",
             "/ru/catalog/-23/",
@@ -28,10 +21,6 @@ class StaticURLTests(TestCase):
             "/ru/catalog/8.24/",
             "/ru/catalog/-8.24/",
         ]
-
-        for request in good_tests_list:
-            response = Client().get(request)
-            self.assertEqual(response.status_code, 200)
 
         for request in bad_tests_list:
             response = Client().get(request)

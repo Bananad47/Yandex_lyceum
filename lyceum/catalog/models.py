@@ -45,52 +45,45 @@ class Category(AbstractionModel):
 
 class GalleryManager(models.Manager):
     def item_gallery(self, item_id_):
-        return (
-            self.get_queryset()
-                .filter(item_id=item_id_)
-                .only("image")
-                )
+        return self.get_queryset().filter(item_id=item_id_).only("image")
 
 
 class ItemManager(models.Manager):
     def item_homepage(self):
         return (
             self.get_queryset()
-                .select_related("category")
-                .prefetch_related(models.Prefetch(
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
                     "tags",
-                    queryset=Tag.objects.filter(is_published=True,)
-                    .only("name")
-                    ))
-                .filter(is_published=True,
-                        is_on_main=True,
-                        category__is_published=True)
-                .only("name",
-                      "text",
-                      "preview",
-                      "category__name",
-                      "tags__name")
-                .order_by("name")
+                    queryset=Tag.objects.filter(
+                        is_published=True,
+                    ).only("name"),
+                )
             )
+            .filter(
+                is_published=True, is_on_main=True, category__is_published=True
+            )
+            .only("name", "text", "preview", "category__name", "tags__name")
+            .order_by("name")
+        )
 
     def item_items_list(self):
         return (
             self.get_queryset()
-                .select_related("category")
-                .prefetch_related(models.Prefetch(
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
                     "tags",
-                    queryset=Tag.objects.filter(is_published=True,)
-                    .only("name")
-                    ))
-                .filter(is_published=True,
-                        category__is_published=True)
-                .only("name",
-                      "text",
-                      "preview",
-                      "category__name",
-                      "tags__name")
-                .order_by("category__name", "name")
+                    queryset=Tag.objects.filter(
+                        is_published=True,
+                    ).only("name"),
                 )
+            )
+            .filter(is_published=True, category__is_published=True)
+            .only("name", "text", "preview", "category__name", "tags__name")
+            .order_by("category__name", "name")
+        )
 
 
 class GalleryModel(models.Model):

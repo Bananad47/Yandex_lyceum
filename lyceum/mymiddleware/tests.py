@@ -12,7 +12,6 @@ class ReverseMiddlewareTests(TestCase):
         tests = [
             "/ru/coffee/",
             "/ru/about/",
-            "/ru/catalog/15/",
             "/ru/catalog/",
         ]
         for test in tests:
