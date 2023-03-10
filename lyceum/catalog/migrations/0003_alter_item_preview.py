@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0002_auto_20230306_0005'),
+        ("catalog", "0002_auto_20230306_0005"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='item',
-            name='preview',
-            field=models.ImageField(default='default.png', help_text='будет приведено к размеру 300x300', upload_to='catalog/preview', verbose_name='превью'),
+            model_name="item",
+            name="preview",
+            field=models.ImageField(
+                default="default.png",
+                help_text="будет приведено к размеру 300x300",
+                upload_to="catalog/preview",
+                verbose_name="превью",
+            ),
         ),
     ]

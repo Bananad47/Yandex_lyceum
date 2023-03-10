@@ -145,7 +145,7 @@ class Item(AbstractionModel):
         "превью",
         help_text="будет приведено к размеру 300x300",
         upload_to="catalog/preview",
-        default="default.png"
+        default="default.png",
     )
 
     def get_image_300x300(self):
