@@ -9,7 +9,10 @@
       </h6>  
       <h3>цена: {{ price }}</h3>
       <h6>категория: {{ card_category }}</h6>
+      {% autoescape off %}
       <h6 class="card-text">описание: {{ card_text|truncatewords:10 }} </h6>
+      {% endautoescape %}
       <a href="#" class="btn btn-primary mt-auto">В корзину</a>
+      <a href={% url "catalog:item_detail" item_id=item_id_%} class="stretched-link"></a>
     </div>
   </div>

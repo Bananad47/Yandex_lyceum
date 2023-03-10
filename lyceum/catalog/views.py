@@ -1,7 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from catalog.models import Item
+from catalog.models import Item, GalleryModel
 
 
 def item_list(request):
@@ -13,8 +13,13 @@ def item_list(request):
 
 def item_detail(request, item_id):
     template = "catalog/item_main_page.html"
-    item = Item.objects.item_detail(item_id)
-    context = {"item": item[0]}
+    queryset = Item.objects.item_items_list()
+    item = get_object_or_404(queryset, pk=item_id)
+    gallery = GalleryModel.objects.item_gallery(item_id)
+    context = {
+        "item": item,
+        "gallery": gallery
+        }
     return render(request, template, context)
 
 

@@ -5,28 +5,36 @@
 {% block content %}
   {% load static %}
   <div class="container">
-    <div class="row">
-      <div class="col-4 offset-4">
-        <img src="{% static '/img/icons/icon100.png' %}" alt="Logo" width="100" height="100" class="rounded mx-auto d-block">
-      </div>
-      <div class="col-4 offset-5">
-        <h1><b>Попа кота</b></h1>
-      </div>
-      <div class="col-7 offset-3">
-        <h3>
-          <p>Попа кота - это интернет-магазин, предлагающий широкий ассортимент продуктов для домашних животных.</p>
-          <p>В нашем магазине вы найдете все необходимое для вашего любимца: корма, игрушки, аксессуары и многое другое. Мы предлагаем бесплатную доставку по всей стране и гарантируем высокое качество наших товаров.</p> 
-          <p>Попа кота - это место, где вы можете найти все, что нужно для вашего домашнего питомца.</p>
-        </h3>
-      </div>
-    </div>
-  </div>
-  <div class="container">
     <div class="row gy-5">
-      <div class="col-4 offset-4">
-        <h1>Популярные товары</h1>
+      <div class="col-12">
+        <div class="container">
+          <div class="row">
+            <div class="col-4 offset-4">
+              <img src="{% static '/img/icons/icon100.png' %}" alt="Logo" width="100" height="100" class="rounded mx-auto d-block">
+            </div>
+            <div class="col-4 offset-5">
+              <h1><b>Попа кота</b></h1>
+            </div>
+            <div class="col-7 offset-3">
+              <h3>
+                <p>Попа кота - это интернет-магазин, предлагающий широкий ассортимент продуктов для домашних животных.</p>
+                <p>В нашем магазине вы найдете все необходимое для вашего любимца: корма, игрушки, аксессуары и многое другое. Мы предлагаем бесплатную доставку по всей стране и гарантируем высокое качество наших товаров.</p> 
+                <p>Попа кота - это место, где вы можете найти все, что нужно для вашего домашнего питомца.</p>
+              </h3>
+            </div>
+          </div>
+        </div>
       </div>
-        {% include 'includes/items_grid.html' with items=items%}
+      <div class="col-12">
+        <div class="container">
+          <div class="row gy-5">
+            <div class="col-4 offset-4">
+              <h1>Популярные товары</h1>
+            </div>
+              {% include 'includes/items_grid.html' with items=items%}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}

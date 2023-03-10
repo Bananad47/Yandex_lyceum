@@ -43,30 +43,13 @@ class Category(AbstractionModel):
         verbose_name_plural = "категории"
 
 
-class GalleryModel(models.Model):
-    image = models.ImageField(
-        "будет приведено к размеру 300x300",
-        upload_to="catalog/gallery",
-    )
-
-    item = models.ForeignKey(
-        "item",
-        on_delete=models.CASCADE,
-        related_name="gallery_items",
-        verbose_name="товар",
-    )
-
-    def get_image_300x300(self):
-        return get_thumbnail(self.image, "300x300", quality=51, crop="center")
-
-    def image_tmb(self):
-        if self.image:
-            return mark_safe(f"<img src='{self.image.url}' width='50'>")
-        return "нет изображения"
-
-    class Meta:
-        verbose_name = "галерея"
-        verbose_name_plural = "галерея"
+class GalleryManager(models.Manager):
+    def item_gallery(self, item_id_):
+        return (
+            self.get_queryset()
+                .filter(item_id=item_id_)
+                .only("image")
+                )
 
 
 class ItemManager(models.Manager):
@@ -108,6 +91,33 @@ class ItemManager(models.Manager):
                       "tags__name")
                 .order_by("category__name", "name")
                 )
+
+
+class GalleryModel(models.Model):
+    objects = GalleryManager()
+    image = models.ImageField(
+        "будет приведено к размеру 300x300",
+        upload_to="catalog/gallery",
+    )
+
+    item = models.ForeignKey(
+        "item",
+        on_delete=models.CASCADE,
+        related_name="gallery_items",
+        verbose_name="товар",
+    )
+
+    def get_image_300x300(self):
+        return get_thumbnail(self.image, "300x300", quality=51, crop="center")
+
+    def image_tmb(self):
+        if self.image:
+            return mark_safe(f"<img src='{self.image.url}' width='50'>")
+        return "нет изображения"
+
+    class Meta:
+        verbose_name = "галерея"
+        verbose_name_plural = "галерея"
 
 
 class Item(AbstractionModel):
