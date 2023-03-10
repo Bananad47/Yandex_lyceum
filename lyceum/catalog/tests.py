@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.test import Client, TestCase
+from django.urls import reverse
 
 from catalog import models
 
@@ -180,3 +181,46 @@ class ModelsTests(TestCase):
     #     )
     #     self.assertEqual(models.Category.objects.count(),
     # self.category_count)
+
+
+class ContextTests(TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
+
+        cls.category = models.Category.objects.create(
+            is_published=True,
+            name="Тестовая категория",
+            slug="test-category-slug",
+            weight=100,
+        )
+
+        cls.tag = models.Tag.objects.create(
+            is_published=True,
+            name="Тестовый Тег",
+            slug="test-tag-slug",
+        )
+        cls.item = models.Item.objects.create(
+            name="Тестовый товар",
+            category=cls.category,
+        )
+
+        cls.category.clean()
+        cls.category.save()
+        cls.tag.clean()
+        cls.tag.save()
+        cls.item.clean()
+        cls.item.save()
+        cls.item.tags.add(cls.tag.pk)
+
+    def test_homepage_context(self):
+        response = Client().get(reverse("homepage:home"))
+        self.assertIn("items", response.context)
+
+    def test_items_list_context(self):
+        response = Client().get(reverse("catalog:item_list"))
+        self.assertIn("items", response.context)
+
+    def test_item_main_page_context(self):
+        response = Client().get(reverse("catalog:item_detail", args=[1]))
+        self.assertIn("item", response.context)
