@@ -228,6 +228,13 @@ class ContextTests(TestCase):
     def test_items_list_context2(self):
         response = Client().get(reverse("catalog:item_list"))
         context = response.context["items"][0].__dict__
-        print(context)
+        tags = (
+            context["_prefetched_objects_cache"]["tags"]
+            .__dict__["_result_cache"][0]
+            .__dict__
+        )
         self.assertNotIn("is_on_main", context)
         self.assertNotIn("is_published", context)
+        self.assertNotIn("category_slug", context)
+        self.assertNotIn("category_weight", context)
+        self.assertNotIn("slug", tags)
