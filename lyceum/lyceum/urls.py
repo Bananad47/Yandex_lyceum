@@ -8,14 +8,14 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("tinymce/", include("tinymce.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 urlpatterns += i18n_patterns(
     path("", include("homepage.urls")),
     path("catalog/", include("catalog.urls")),
     path("about/", include("about.urls")),
     path("coffee/", include("coffee.urls")),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

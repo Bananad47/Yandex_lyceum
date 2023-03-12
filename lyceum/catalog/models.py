@@ -1,6 +1,7 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
 from django.utils.safestring import mark_safe
+from django.db.models.functions import Lower
 
 from core.models import AbstractionModel
 from core.validators import custom_validator
@@ -82,7 +83,7 @@ class ItemManager(models.Manager):
             )
             .filter(is_published=True, category__is_published=True)
             .only("name", "text", "preview", "category__name", "tags__name")
-            .order_by("category__name", "name")
+            .order_by(Lower("category__name"), Lower("name"))
         )
 
 
@@ -146,6 +147,16 @@ class Item(AbstractionModel):
         help_text="будет приведено к размеру 300x300",
         upload_to="catalog/preview",
         default="default.png",
+    )
+
+    updated = models.DateTimeField(
+        "дата обновления",
+        auto_now=True,
+    )
+
+    created = models.DateTimeField(
+        "дата обновления",
+        auto_now=True,
     )
 
     def get_image_300x300(self):

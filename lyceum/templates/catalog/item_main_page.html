@@ -22,7 +22,7 @@
                   <div class="carousel-item active">
                     {% thumbnail item.preview "300x300" crop="center" as preview %}
                       <img src={{preview.url}} class="d-block w-100" role="img">
-                      {% endthumbnail %}
+                    {% endthumbnail %}
                   </div>
                   {% for image in gallery %}
                     <div class="carousel-item">
@@ -57,11 +57,27 @@
               <h2>Категория:</h2>
               <h3> {{item.category.name}}</h3>
             </div>
-
-
           </div>
         </div>
       </div>
+
+
+      <div class="col-12">
+        <h5>
+          <a href="{{ item.preview.url }}" download>
+            Скачать {{ item.preview }}
+          </a>
+      </h5>
+        {% for img in gallery %}
+        <h5>
+          <a href="{{ img.image.url }}" download>
+            Скачать {{ img.image }}
+          </a>
+        </h5>
+        {% endfor %}
+      </div>
+
+
       <div class="col-12">
         <h2>Описание товара:</h2>
         {% autoescape off %}

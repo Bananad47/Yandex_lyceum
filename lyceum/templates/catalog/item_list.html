@@ -12,6 +12,7 @@
       </div>
       <div>
         {% regroup items by category.name as categories %}
+        {{categories}}
         {% for category in categories %}
           <div>
             <h1> {{category.grouper }} </h1>

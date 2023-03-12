@@ -61,6 +61,8 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 "django.template.context_processors.i18n",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -114,7 +116,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
-
+STATIC_ROOT = "/static_root/"
 STATICFILES_DIRS = [
     BASE_DIR / "static_dev",
 ]
@@ -126,7 +128,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DEFAULT_CHARSET = "utf-8"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 MEDIA_URL = "/media/"
 
 

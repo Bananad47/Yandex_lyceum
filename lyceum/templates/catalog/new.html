@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+<link href= "{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+{% block title %}
+Новинки в магазине попа кота
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-4 offset-4">
+        <h1>Новинки</h1>
+      </div>
+      <div>
+        {% include 'includes/items_grid.html' with items=items%}
+      </div>
+    </div>
+  </div>
+{% endblock %}

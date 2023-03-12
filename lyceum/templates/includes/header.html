@@ -24,6 +24,11 @@
               <a class="nav-link {% if 'catalog:item_list' == view_name %}active {% endif %}" href="{%url 'catalog:item_list'%}">{% trans "Список товаров" %}</a>
             </li>
             {% endwith %}
+            {% if request.user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin:index' %}">{% trans "Админка" %}</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

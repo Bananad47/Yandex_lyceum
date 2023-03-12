@@ -1,5 +1,8 @@
+import datetime
+
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.db import models
 
 from catalog.models import GalleryModel, Item
 
@@ -7,6 +10,7 @@ from catalog.models import GalleryModel, Item
 def item_list(request):
     template = "catalog/item_list.html"
     items = Item.objects.item_items_list()
+    print([x.category.name for x in items])
     context = {"items": items}
     return render(request, template, context)
 
@@ -17,6 +21,53 @@ def item_detail(request, item_id):
     item = get_object_or_404(queryset, pk=item_id)
     gallery = GalleryModel.objects.item_gallery(item_id)
     context = {"item": item, "gallery": gallery}
+    return render(request, template, context)
+
+
+def new_items(request):
+    template = "catalog/new.html"
+    items = (
+            Item.objects.item_items_list()
+            .filter(
+                created__gte=datetime.date.today()-datetime.timedelta(days=7)
+                )
+            .order_by("?")
+            )[:5]
+    context = {
+        "items": items
+    }
+    return render(request, template, context)
+
+
+# def friday_items(request):
+#     template = "catalog/friday.html"
+#     items = (
+#         Item.objects.item_items_list()
+#         .filter(
+#             updated=
+#         )
+#     )
+
+def unverified(request):
+    template = "catalog/unverified.html"
+    items = (
+        Item.objects.item_items_list()
+        .filter(
+            created__gte=models.F(
+                Item.updated.field.name
+            ) - datetime.timedelta(seconds=1),
+
+            created__lte=models.F(
+                    Item.updated.field.name
+                ) + datetime.timedelta(seconds=1)
+        )
+        .order_by("?")
+    )[:5]
+
+    context = {
+        "items": items
+    }
+
     return render(request, template, context)
 
 
