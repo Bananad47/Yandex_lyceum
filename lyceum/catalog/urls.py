@@ -12,5 +12,6 @@ urlpatterns = [
     path("convector/<id:product_id>/", views.product_conventer_page),
     re_path(r"^re/(?P<number>[1-9][0-9]+|[1-9])/$", views.regular),
     path("new/", views.new_items),
-    path("unverified", views.unverified)
+    path("unverified", views.unverified),
+    path("friday", views.friday_items),
 ]

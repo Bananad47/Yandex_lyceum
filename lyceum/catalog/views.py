@@ -39,14 +39,21 @@ def new_items(request):
     return render(request, template, context)
 
 
-# def friday_items(request):
-#     template = "catalog/friday.html"
-#     items = (
-#         Item.objects.item_items_list()
-#         .filter(
-#             updated=
-#         )
-#     )
+def friday_items(request):
+    template = "catalog/friday.html"
+    items = (
+        Item.objects.item_items_list()
+        .filter(
+            updated__week_day=6
+        )
+        .order_by("updated")
+    )[:5]
+
+    context = {
+        "items": items
+    }
+    return render(request, template, context)
+
 
 def unverified(request):
     template = "catalog/unverified.html"
