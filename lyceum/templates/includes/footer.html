@@ -3,9 +3,8 @@
       <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">На главную</a></li>
       <li class="nav-item"><a href="{% url 'about:description' %}" class="nav-link px-2 text-muted">О проекте</a></li>
     </ul>
-    <p class="text-center text-muted">&copy; 2023 Попа кота, Inc</p>
+    <p class="text-center text-muted">&copy; <span id="date">{% now "Y" %}</span> Попа кота, Inc</p>
     <div>
-      Дата: <span id="date">{% now "Y" %}</span>
       <script>
         function diffDates(day_one, day_two) {
           return (day_one - day_two) / (60 * 60 * 24 * 1000);
