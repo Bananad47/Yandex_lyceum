@@ -12,10 +12,9 @@
       </div>
       <div>
         {% regroup items by category.name as categories %}
-        {{categories}}
         {% for category in categories %}
+          <h3>{{ category.grouper }}</h3>
           <div>
-            <h1> {{category.grouper }} </h1>
             {% include 'includes/items_grid.html' with items=category.list%}
           </div>
         {% endfor %}

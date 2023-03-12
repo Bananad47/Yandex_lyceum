@@ -21,13 +21,13 @@
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     {% thumbnail item.preview "300x300" crop="center" as preview %}
-                      <img src={{preview.url}} class="d-block w-100" role="img">
+                      <img src={{ preview.url }} class="d-block w-100" role="img">
                     {% endthumbnail %}
                   </div>
-                  {% for image in gallery %}
+                  {% for image in item.gallery_items.all %}
                     <div class="carousel-item">
                       {% thumbnail image.image "300x300" crop="center" as img %}
-                      <img src='{{img.url}}' class="d-block w-100" role="img">
+                        <img src='{{img.url}}' class="d-block w-100" role="img">
                       {% endthumbnail %}
                     </div>
                   {% endfor %}

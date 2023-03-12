@@ -44,11 +44,6 @@ class Category(AbstractionModel):
         verbose_name_plural = "категории"
 
 
-class GalleryManager(models.Manager):
-    def item_gallery(self, item_id_):
-        return self.get_queryset().filter(item_id=item_id_).only("image")
-
-
 class ItemManager(models.Manager):
     def item_homepage(self):
         return (
@@ -83,12 +78,38 @@ class ItemManager(models.Manager):
             )
             .filter(is_published=True, category__is_published=True)
             .only("name", "text", "preview", "category__name", "tags__name")
-            .order_by(Lower("category__name"), Lower("name"))
+            .order_by(Lower("category__name"), "name")
+        )
+
+    def item_detailed(self):
+        return (
+            self.get_queryset()
+            .select_related("category")
+            .prefetch_related(
+                models.Prefetch(
+                    "tags",
+                    queryset=Tag.objects.filter(
+                        is_published=True,
+                    ).only("name"),
+                ),
+                models.Prefetch(
+                    "gallery_items",
+                    queryset=GalleryModel.objects.only("image"),
+                ),
+            )
+            .filter(is_published=True, category__is_published=True)
+            .only(
+                "name",
+                "text",
+                "preview",
+                "category__name",
+                "tags__name",
+                # "gallery_items__image",
+            )
         )
 
 
 class GalleryModel(models.Model):
-    objects = GalleryManager()
     image = models.ImageField(
         "будет приведено к размеру 300x300",
         upload_to="catalog/gallery",
@@ -98,6 +119,7 @@ class GalleryModel(models.Model):
         "item",
         on_delete=models.CASCADE,
         related_name="gallery_items",
+        related_query_name="gallery_items",
         verbose_name="товар",
     )
 

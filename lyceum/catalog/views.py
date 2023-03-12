@@ -4,23 +4,21 @@ from django.db import models
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
-from catalog.models import GalleryModel, Item
+from catalog.models import Item
 
 
 def item_list(request):
     template = "catalog/item_list.html"
     items = Item.objects.item_items_list()
-    print([x.category.name for x in items])
     context = {"items": items}
     return render(request, template, context)
 
 
 def item_detail(request, item_id):
     template = "catalog/item_main_page.html"
-    queryset = Item.objects.item_items_list()
+    queryset = Item.objects.item_detailed()
     item = get_object_or_404(queryset, pk=item_id)
-    gallery = GalleryModel.objects.item_gallery(item_id)
-    context = {"item": item, "gallery": gallery}
+    context = {"item": item}
     return render(request, template, context)
 
 
