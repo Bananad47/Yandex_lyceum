@@ -1,7 +1,7 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
-from django.utils.safestring import mark_safe
 from django.db.models.functions import Lower
+from django.utils.safestring import mark_safe
 
 from core.models import AbstractionModel
 from core.validators import custom_validator

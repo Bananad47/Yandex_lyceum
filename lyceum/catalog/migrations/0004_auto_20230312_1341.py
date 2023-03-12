@@ -4,20 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0003_alter_item_preview'),
+        ("catalog", "0003_alter_item_preview"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='item',
-            name='created',
-            field=models.DateTimeField(auto_now=True, verbose_name='дата обновления'),
+            model_name="item",
+            name="created",
+            field=models.DateTimeField(
+                auto_now=True, verbose_name="дата обновления"
+            ),
         ),
         migrations.AddField(
-            model_name='item',
-            name='updated',
-            field=models.DateTimeField(auto_now=True, verbose_name='дата обновления'),
+            model_name="item",
+            name="updated",
+            field=models.DateTimeField(
+                auto_now=True, verbose_name="дата обновления"
+            ),
         ),
     ]

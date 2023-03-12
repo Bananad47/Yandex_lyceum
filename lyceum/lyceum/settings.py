@@ -61,8 +61,8 @@ TEMPLATES = [
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
                 "django.template.context_processors.i18n",
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -128,7 +128,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 DEFAULT_CHARSET = "utf-8"
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace("\\", "/")
 MEDIA_URL = "/media/"
 
 

@@ -1,8 +1,8 @@
 import datetime
 
+from django.db import models
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from django.db import models
 
 from catalog.models import GalleryModel, Item
 
@@ -27,15 +27,13 @@ def item_detail(request, item_id):
 def new_items(request):
     template = "catalog/new.html"
     items = (
-            Item.objects.item_items_list()
-            .filter(
-                created__gte=datetime.date.today()-datetime.timedelta(days=7)
-                )
-            .order_by("?")
-            )[:5]
-    context = {
-        "items": items
-    }
+        Item.objects.item_items_list()
+        .filter(
+            created__gte=datetime.date.today() - datetime.timedelta(days=7)
+        )
+        .order_by("?")
+    )[:5]
+    context = {"items": items}
     return render(request, template, context)
 
 
@@ -43,15 +41,11 @@ def friday_items(request):
     template = "catalog/friday.html"
     items = (
         Item.objects.item_items_list()
-        .filter(
-            updated__week_day=6
-        )
+        .filter(updated__week_day=6)
         .order_by("updated")
     )[:5]
 
-    context = {
-        "items": items
-    }
+    context = {"items": items}
     return render(request, template, context)
 
 
@@ -60,20 +54,15 @@ def unverified(request):
     items = (
         Item.objects.item_items_list()
         .filter(
-            created__gte=models.F(
-                Item.updated.field.name
-            ) - datetime.timedelta(seconds=1),
-
-            created__lte=models.F(
-                    Item.updated.field.name
-                ) + datetime.timedelta(seconds=1)
+            created__gte=models.F(Item.updated.field.name)
+            - datetime.timedelta(seconds=1),
+            created__lte=models.F(Item.updated.field.name)
+            + datetime.timedelta(seconds=1),
         )
         .order_by("?")
     )[:5]
 
-    context = {
-        "items": items
-    }
+    context = {"items": items}
 
     return render(request, template, context)
 
